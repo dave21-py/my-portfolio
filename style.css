@@ -92,24 +92,24 @@ body {
 
 .hero-image-container {
     position: absolute;
-    top: -5%;
     left: 0;
     width: 100%;
     height: 100%;
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-end; /* THIS IS THE KEY CHANGE: Aligns the image to the bottom */
     z-index: -1;
 }
 
 .hero-image {
     width: auto;
     height: 100%;
-    max-width: 600px;
+    max-width: 750px; /* INCREASED SIZE: Allows the image to be bigger */
     object-fit: contain;
     opacity: 0.85;
-    mask-image: linear-gradient(to top, transparent 2%, black 25%);
-    -webkit-mask-image: linear-gradient(to top, transparent 2%, black 25%);
+    /* UPDATED FADE: The fade now starts at the very bottom (0%) and finishes much sooner (15%) */
+    mask-image: linear-gradient(to top, transparent 0%, black 15%);
+    -webkit-mask-image: linear-gradient(to top, transparent 0%, black 15%);
 }
 
 .hero-content {
@@ -205,4 +205,69 @@ body {
         transform: scale(1);
         box-shadow: 0 0 3px #34d399;
     }
+}
+/* --- STICKY HERO SECTION --- */
+/* --- REVISED HERO SECTION STYLES --- */
+.hero-section {
+    position: relative;
+    height: 85vh; /* Reverted to a height that leaves room for the header */
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr auto;
+    align-items: center;
+    gap: 2rem;
+}
+
+
+/* --- FEATURED WORKS SECTION STYLES --- */
+/* --- FEATURED WORKS SECTION STYLES --- */
+.featured-works {
+    background-color: var(--background-color);
+    padding: 4rem 5%;
+    position: relative; /* Keep this for positioning context if needed later */
+}
+
+.works-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 3rem;
+}
+
+.works-header h2 {
+    font-size: 2rem;
+    font-weight: 700;
+    margin: 0;
+}
+
+.all-works-link {
+    font-weight: 500;
+    text-decoration: none;
+    color: var(--text-color);
+}
+
+.project-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Two equal columns */
+    gap: 2rem; /* Space between the project cards */
+}
+
+.project-card {
+    /* Add styling for your project cards here */
+}
+
+.project-card img {
+    width: 100%;
+    height: auto;
+    border-radius: 12px; /* Soft rounded corners for the images */
+    margin-bottom: 1rem;
+}
+
+.project-card h3 {
+    margin: 0 0 0.5rem 0;
+}
+
+.project-card p {
+    margin: 0;
+    color: #6b7280;
 }
