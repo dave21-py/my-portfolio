@@ -21,12 +21,11 @@ body {
     padding: 2rem 0;
 }
 
-/* --- REVISED NAVIGATION STYLES --- */
 .main-nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    position: relative; /* Creates a positioning context for the links */
+    position: relative;
 }
 
 .logo {
@@ -38,20 +37,27 @@ body {
     list-style: none;
     display: flex;
     gap: 2rem;
-    position: absolute; /* Allows precise positioning */
-    left: 50%; /* Moves the element's left edge to the center */
-    transform: translateX(-50%); /* Shifts the element left by half its own width to perfectly center it */
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
 }
 
 .nav-links a {
     text-decoration: none;
-    color: #6b7280; /* Changed to a lighter grey for the navigation links */
+    color: #6b7280;
     font-weight: 500;
     transition: color 0.3s ease;
 }
 
+/* --- NEW AND CORRECTED HOVER LOGIC --- */
+/* This rule says: when hovering the nav-links container, apply this style to any link (a) that is NOT being hovered. */
+.nav-links:hover a:not(:hover) {
+    color: #d1d5db; /* This is the translucent color */
+}
+
+/* This rule ensures the link you ARE hovering remains solid black. */
 .nav-links a:hover {
-    color: #888;
+    color: var(--text-color);
 }
 
 .cta-button {
@@ -73,8 +79,8 @@ body {
     position: relative;
     height: 85vh;
     display: grid;
-    grid-template-columns: 1fr 1fr; /* Two columns */
-    grid-template-rows: 1fr auto; /* A flexible top row and a bottom row based on content size */
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr auto;
     align-items: center;
     gap: 2rem;
 }
@@ -97,16 +103,14 @@ body {
     max-width: 600px;
     object-fit: contain;
     opacity: 0.85;
-    /* This is updated: makes the fade effect much shorter and lower on the image */
     mask-image: linear-gradient(to top, transparent 2%, black 25%);
     -webkit-mask-image: linear-gradient(to top, transparent 2%, black 25%);
 }
 
-/* This is the title on the bottom-left */
 .hero-content {
-    grid-column: 1 / 2; /* Position in the first column */
-    grid-row: 2 / 3; /* Position in the second row (the bottom) */
-    align-self: end; /* Align to the bottom of its grid area */
+    grid-column: 1 / 2;
+    grid-row: 2 / 3;
+    align-self: end;
     padding-bottom: 2rem;
 }
 
@@ -141,19 +145,23 @@ body {
 
 /* This is the paragraph on the bottom-right */
 .hero-description {
-    grid-column: 2 / 3; /* Position in the second column */
-    grid-row: 2 / 3; /* Position in the second row (the bottom) */
-    align-self: end; /* Align to the bottom of its grid area */
-    justify-self: end; /* Aligns the item to the right edge of its grid area */
-    padding-bottom: 2rem; /* Give it some space from the bottom */
+    grid-column: 2 / 3;
+    grid-row: 2 / 3;
+    align-self: end;
+    justify-self: end;
+    padding-bottom: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
 }
 
+/* This rule styles the paragraph text correctly. */
 .hero-description p {
     font-size: 1.1rem;
     line-height: 1.6;
     margin-bottom: 2rem;
     max-width: 450px;
-    text-align: right; /* Aligns the text inside the box to the right */
+    text-align: right;
 }
 
 .email-button {
