@@ -59,23 +59,41 @@
     <section class="featured-works">
         <div class="works-header">
             <h2>Projects</h2>
-            <a href="#" class="all-works-link">All Projects &rarr;</a>
+            <a href="#" class="all-works-link">All Works &rarr;</a>
         </div>
         <div class="project-grid">
-            <!-- Project 1 -->
+    
+            <!-- Project 1 (Using a Video) -->
             <div class="project-card">
-                <!-- Replace with your project image -->
-                <img src="images/project1-placeholder.png" alt="Description of project 1">
-                <h3>Project Title 1</h3>
-                <p>Brief description of the work.</p>
+                <!-- 
+                  To use a video:
+                  - Use the <video> tag.
+                  - autoplay loop muted playsinline are essential for a silent, looping background video.
+                  - Provide the path to your video file in src.
+                -->
+                <video src="videos/tiling-bg.mov" autoplay loop muted playsinline></video>
+                <div class="project-info">
+                    <h3>Vibe Coded an AI OS</h3>
+                    <div class="tags">
+                        <span>Gemini API</span>
+                        <span>Web Dev, App Clones</span>
+                    </div>
+                </div>
             </div>
-            <!-- Project 2 -->
+    
+            <!-- Project 2 (Using an Image) -->
             <div class="project-card">
-                <!-- Replace with your project image -->
-                <img src="images/project2-placeholder.png" alt="Description of project 2">
-                <h3>Project Title 2</h3>
-                <p>Brief description of the work.</p>
+                <img src="images/wallpaper3.png" alt="Description of project 2">
+                <div class="project-info">
+                    <h3>Planza</h3>
+                    <div class="tags">
+                        <span>Framer Website</span>
+                    </div>
+                </div>
             </div>
+    
+            <!-- You can add more project cards here by copying the structure -->
+    
         </div>
     </section>
 

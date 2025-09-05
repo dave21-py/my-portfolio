@@ -160,15 +160,6 @@ body {
     align-items: flex-end;
 }
 
-/* This rule styles the paragraph text correctly. */
-.hero-description p {
-    font-size: 1.2rem;
-    line-height: 1.6;
-    margin-bottom: 2rem;
-    max-width: 450px;
-    text-align: right;
-}
-
 .email-button {
     background-color: var(--primary-button-bg);
     color: var(--primary-button-text);
@@ -224,7 +215,7 @@ body {
 .featured-works {
     background-color: var(--background-color);
     padding: 4rem 5%;
-    position: relative; /* Keep this for positioning context if needed later */
+    position: relative;
 }
 
 .works-header {
@@ -235,7 +226,7 @@ body {
 }
 
 .works-header h2 {
-    font-size: 2rem;
+    font-size: 2.5rem; /* Slightly larger title */
     font-weight: 700;
     margin: 0;
 }
@@ -244,30 +235,74 @@ body {
     font-weight: 500;
     text-decoration: none;
     color: var(--text-color);
+    background-color: #f3f4f6; /* Light grey background */
+    padding: 0.75rem 1.5rem;
+    border-radius: 9999px;
+    transition: background-color 0.3s ease;
+}
+
+.all-works-link:hover {
+    background-color: #e5e7eb; /* Slightly darker on hover */
 }
 
 .project-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr; /* Two equal columns */
-    gap: 2rem; /* Space between the project cards */
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Responsive grid */
+    gap: 2rem;
 }
 
 .project-card {
-    /* Add styling for your project cards here */
+    position: relative; /* This is crucial for the text overlay */
+    border-radius: 24px; /* The large rounded corners */
+    overflow: hidden; /* This makes the video/image conform to the border-radius */
+    aspect-ratio: 4 / 3; /* Gives the card a consistent shape */
+    color: white; /* All text inside will be white */
 }
 
+/* This styles both the video and the image to fill the card */
+.project-card video,
 .project-card img {
     width: 100%;
-    height: auto;
-    border-radius: 12px; /* Soft rounded corners for the images */
-    margin-bottom: 1rem;
+    height: 100%;
+    object-fit: cover; /* This makes the media fill the container without distortion */
+    transition: transform 0.4s ease; /* For a subtle zoom on hover */
 }
 
-.project-card h3 {
+.project-card:hover video,
+.project-card:hover img {
+    transform: scale(1.05); /* Zoom effect on hover */
+}
+
+.project-info {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 1.5rem;
+    box-sizing: border-box; /* Ensures padding is included in the width */
+    /* This gradient makes the text readable against any background */
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent);
+}
+
+.project-info h3 {
     margin: 0 0 0.5rem 0;
+    font-size: 1.5rem;
+    text-shadow: 0 1px 3px rgba(0,0,0,0.3); /* Adds shadow for readability */
 }
 
-.project-card p {
-    margin: 0;
-    color: #6b7280;
+.tags {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.tags span {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    border-radius: 9999px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    background-color: rgba(0, 0, 0, 0.2); /* Slight transparent background */
+    backdrop-filter: blur(5px); /* Frosted glass effect for tags */
+    -webkit-backdrop-filter: blur(5px);
 }
