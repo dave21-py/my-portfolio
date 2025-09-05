@@ -489,18 +489,19 @@ body {
 
 /* --- REST STATE (BEFORE HOVER) --- */
 
-/* The main card (10+ projects) is always visible on top */
-.stats-container .stat-card:nth-of-type(1) {
+/* The main card is the 2nd div, so we target :nth-of-type(2) */
+.stats-container .stat-card:nth-of-type(2) {
     position: relative;
     z-index: 4;
 }
 
-/* Position the two cards below the main one */
-.stats-container .stat-card:nth-of-type(2) {
+/* The card below it is the 3rd div */
+.stats-container .stat-card:nth-of-type(3) {
     transform: translateY(8px) scale(0.95);
     z-index: 3;
 }
-.stats-container .stat-card:nth-of-type(3) {
+/* The bottom card is the 4th div */
+.stats-container .stat-card:nth-of-type(4) {
     transform: translateY(16px) scale(0.9);
     z-index: 2;
 }
@@ -514,8 +515,8 @@ body {
 
 /* --- HOVER STATE --- */
 
-/* On hover, move the main card up and rotate slightly */
-.stats-container:hover .stat-card:nth-of-type(1) {
+/* On hover, move the main card (the 2nd div) up */
+.stats-container:hover .stat-card:nth-of-type(2) {
     transform: translateY(-5px) rotate(-3deg);
     box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.15);
 }
@@ -527,13 +528,13 @@ body {
     z-index: 5;
 }
 
-/* Reveal and fan out the "5+ years" card */
-.stats-container:hover .stat-card:nth-of-type(2) {
+/* Reveal and fan out the next card (the 3rd div) */
+.stats-container:hover .stat-card:nth-of-type(3) {
     transform: translateY(calc(100% + 0.75rem)) rotate(3deg);
 }
 
-/* Reveal and fan out the "10+ clients" card */
-.stats-container:hover .stat-card:nth-of-type(3) {
+/* Reveal and fan out the bottom card (the 4th div) */
+.stats-container:hover .stat-card:nth-of-type(4) {
     transform: translateY(calc(200% + 1.5rem)) rotate(6deg);
 }
 
