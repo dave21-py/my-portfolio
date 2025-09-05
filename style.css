@@ -457,13 +457,15 @@ body {
     color: #f9fafb;
 }
 
-/* --- Card 3: Stats Card (Completely Refined for Deck Effect) --- */
+/* --- Card 3: Stats Card (Final "Fanned Deck" Effect) --- */
 
 .stats-container {
     position: relative;
-    justify-self: center; /* Centers the container in its grid column */
-    width: 320px; /* Give the container a fixed width */
-    height: 60px; /* Give it a height to contain the animation */
+    justify-self: center;
+    width: 320px;
+    height: 60px;
+    /* This makes the 3D perspective more noticeable */
+    perspective: 1000px;
 }
 
 /* Base styles for all cards in the stack */
@@ -472,7 +474,8 @@ body {
     background-color: #ffffff;
     padding: 1rem 1.5rem;
     border-radius: 16px;
-    box-shadow: 0px 12px 24px -4px rgba(0, 0, 0, 0.08), 0px 4px 8px -2px rgba(0, 0, 0, 0.05);
+    /* A softer, more realistic shadow */
+    box-shadow: 0 15px 30px -10px rgba(0, 0, 0, 0.1);
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -481,58 +484,62 @@ body {
     width: 100%;
     top: 0;
     left: 0;
-    transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1); /* Professional ease-out transition */
+    transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 /* --- REST STATE (BEFORE HOVER) --- */
 
-/* The main card (10+ projects) is the 2nd child in the HTML */
+/* The main card (10+ projects) is always visible on top */
 .stats-container .stat-card:nth-of-type(1) {
-    position: relative; /* Make this the only non-absolute card initially */
+    position: relative;
     z-index: 4;
 }
 
-/* Hide all other cards behind the main one */
-.stats-container .trusted-card,
-.stats-container .stat-card:nth-of-type(2),
+/* Position the two cards below the main one */
+.stats-container .stat-card:nth-of-type(2) {
+    transform: translateY(8px) scale(0.95);
+    z-index: 3;
+}
 .stats-container .stat-card:nth-of-type(3) {
+    transform: translateY(16px) scale(0.9);
+    z-index: 2;
+}
+
+/* Hide the green "Trusted" card completely */
+.stats-container .trusted-card {
     opacity: 0;
-    transform: scale(0.95) translateY(10px); /* Start slightly smaller and lower */
+    transform: translateY(10px) scale(0.9);
     z-index: 1;
 }
 
 /* --- HOVER STATE --- */
 
-/* When hovering the container, move the main card up slightly */
+/* On hover, move the main card up and rotate slightly */
 .stats-container:hover .stat-card:nth-of-type(1) {
-    transform: translateY(-5px);
-    box-shadow: 0px 16px 32px -4px rgba(0, 0, 0, 0.1), 0px 6px 12px -3px rgba(0, 0, 0, 0.08);
+    transform: translateY(-5px) rotate(-3deg);
+    box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.15);
 }
 
 /* Reveal the green "Trusted" card and move it UP */
 .stats-container:hover .trusted-card {
     opacity: 1;
-    transform: translateY(calc(-100% - 1rem)); /* Move it up by its height plus a 1rem gap */
-    z-index: 5; /* Bring it to the very top */
+    transform: translateY(calc(-100% - 1rem)) rotate(3deg);
+    z-index: 5;
 }
 
-/* Reveal the "5+ years" card and move it DOWN */
+/* Reveal and fan out the "5+ years" card */
 .stats-container:hover .stat-card:nth-of-type(2) {
-    opacity: 1;
-    transform: translateY(calc(100% + 0.5rem)); /* Move it down by its height plus a 0.5rem gap */
-    z-index: 3;
+    transform: translateY(calc(100% + 0.75rem)) rotate(3deg);
 }
 
-/* Reveal the "10+ clients" card and move it FURTHER DOWN */
+/* Reveal and fan out the "10+ clients" card */
 .stats-container:hover .stat-card:nth-of-type(3) {
-    opacity: 1;
-    transform: translateY(calc(200% + 1rem)); /* Move it down by 2x height + 2x gap */
-    z-index: 2;
+    transform: translateY(calc(200% + 1.5rem)) rotate(6deg);
 }
 
 /* --- Specific Styling for the Green "Trusted" Card --- */
 .trusted-card {
-    background-color: #22c55e; /* Green background */
+    background-color: #22c55e;
     color: white;
     font-weight: 500;
 }
@@ -546,7 +553,7 @@ body {
     height: 28px;
     border-radius: 50%;
     border: 2px solid #22c55e;
-    margin-left: -10px; /* This makes the avatars overlap */
+    margin-left: -10px;
 }
 
 .avatars img:first-child {
