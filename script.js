@@ -66,4 +66,36 @@ document.addEventListener("DOMContentLoaded", () => {
   window.addEventListener("scroll", () => {
       requestAnimationFrame(updateBlur);
   });
+
+  // --- "SHOW MORE" PROJECTS FUNCTIONALITY ---
+const allWorksButton = document.querySelector(".all-works-link");
+const projectCards = document.querySelectorAll(".project-card");
+
+// Make sure the button exists before adding an event listener
+if (allWorksButton) {
+    allWorksButton.addEventListener("click", (event) => {
+        // Prevent the link from trying to navigate away
+        event.preventDefault();
+
+        let delay = 0;
+        // Loop through all project cards
+        projectCards.forEach((card, index) => {
+            // Target the cards that are currently hidden (index 4 is the 5th item)
+            if (index >= 4) {
+                // First, make the card part of the layout
+                card.style.display = "block";
+
+                // Add the class that triggers the animation
+                card.classList.add("is-visible");
+
+                // Apply a staggered delay to each card for a nicer effect
+                card.style.animationDelay = `${delay}s`;
+                delay += 0.1; // Increase the delay for the next card
+            }
+        });
+
+        // Add a class to fade out the "All Works" button
+        allWorksButton.classList.add("is-hidden");
+    });
+}
 });

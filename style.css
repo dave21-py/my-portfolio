@@ -299,3 +299,33 @@ body {
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
 }
+/* --- "SHOW MORE" FUNCTIONALITY STYLES --- */
+
+/* 1. By default, hide all project cards starting from the 5th one */
+.project-card:nth-child(n + 5) {
+    display: none;
+}
+
+/* 2. Define the keyframe animation for the fade-in effect */
+@keyframes fadeInStagger {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* 3. Create a class that JavaScript will add to the now-visible cards to trigger the animation */
+.project-card.is-visible {
+    /* The 'forwards' keyword ensures the card stays visible (opacity: 1) after the animation ends */
+    animation: fadeInStagger 0.5s ease-out forwards;
+}
+
+/* 4. Style for the button when it's hidden */
+.all-works-link.is-hidden {
+    opacity: 0;
+    pointer-events: none; /* Prevents clicking the invisible button */
+}
