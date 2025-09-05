@@ -21,10 +21,12 @@ body {
     padding: 2rem 0;
 }
 
+/* --- REVISED NAVIGATION STYLES --- */
 .main-nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    position: relative; /* Creates a positioning context for the links */
 }
 
 .logo {
@@ -36,6 +38,9 @@ body {
     list-style: none;
     display: flex;
     gap: 2rem;
+    position: absolute; /* Allows precise positioning */
+    left: 50%; /* Moves the element's left edge to the center */
+    transform: translateX(-50%); /* Shifts the element left by half its own width to perfectly center it */
 }
 
 .nav-links a {
@@ -66,77 +71,81 @@ body {
 /* --- REVISED HERO SECTION STYLES --- */
 .hero-section {
     position: relative;
-    height: 85vh; /* Make the section fill most of the viewport */
+    height: 85vh;
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1fr;
+    grid-template-columns: 1fr 1fr; /* Two columns */
+    grid-template-rows: 1fr auto; /* A flexible top row and a bottom row based on content size */
     align-items: center;
     gap: 2rem;
 }
 
 .hero-image-container {
     position: absolute;
-    top: -5%; /* Move image up slightly */
+    top: -5%;
     left: 0;
     width: 100%;
     height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: -1; /* Place image behind text */
+    z-index: -1;
 }
 
 .hero-image {
     width: auto;
     height: 100%;
-    max-width: 600px; /* Enlarge the image */
+    max-width: 600px;
     object-fit: contain;
-    opacity: 0.85; /* Slight transparency */
-    /* This creates the blurred/faded bottom effect */
-    mask-image: linear-gradient(to top, transparent 5%, black 40%);
-    -webkit-mask-image: linear-gradient(to top, transparent 5%, black 40%);
+    opacity: 0.85;
+    /* This is updated: makes the fade effect much shorter and lower on the image */
+    mask-image: linear-gradient(to top, transparent 2%, black 25%);
+    -webkit-mask-image: linear-gradient(to top, transparent 2%, black 25%);
 }
 
+/* This is the title on the bottom-left */
 .hero-content {
-    grid-column: 1 / 2;
-    align-self: end; /* Position this at the bottom of its grid area */
+    grid-column: 1 / 2; /* Position in the first column */
+    grid-row: 2 / 3; /* Position in the second row (the bottom) */
+    align-self: end; /* Align to the bottom of its grid area */
     padding-bottom: 2rem;
 }
 
 .availability {
     display: flex;
     align-items: center;
-    gap: 0.75rem; /* Increased gap slightly */
-    margin-bottom: 1.5rem; /* Increased margin */
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
 }
 
-/* ADD THIS NEW RULE */
 .availability p {
-    color: #6b7280; /* A grey color for the text */
+    color: #6b7280;
     font-size: 0.9rem;
     font-weight: 500;
 }
 
 .status-indicator {
-    width: 0.6rem; /* Slightly smaller */
+    width: 0.6rem;
     height: 0.6rem;
     background-color: var(--status-color);
     border-radius: 50%;
-    /* This line applies the animation we just created */
     animation: glow 2.5s infinite ease-in-out;
 }
 
 .hero-title {
     font-size: 2.3rem;
     line-height: 1.1;
-    font-weight: 700; /* Reverted to bolder weight to match reference */
+    font-weight: 700;
     color: #1a1a1a;
     letter-spacing: -0.02em;
 }
 
+/* This is the paragraph on the bottom-right */
 .hero-description {
-    grid-column: 2 / 3;
-    /* This content remains vertically centered in its column */
+    grid-column: 2 / 3; /* Position in the second column */
+    grid-row: 2 / 3; /* Position in the second row (the bottom) */
+    align-self: end; /* Align to the bottom of its grid area */
+    justify-self: end; /* Aligns the item to the right edge of its grid area */
+    padding-bottom: 2rem; /* Give it some space from the bottom */
 }
 
 .hero-description p {
@@ -144,6 +153,7 @@ body {
     line-height: 1.6;
     margin-bottom: 2rem;
     max-width: 450px;
+    text-align: right; /* Aligns the text inside the box to the right */
 }
 
 .email-button {
@@ -160,7 +170,8 @@ body {
 .email-button:hover {
     background-color: #333;
 }
-/* --- ADD THIS AT THE END OF YOUR CSS FILE --- */
+
+/* --- ANIMATION KEYFRAMES --- */
 @keyframes glow {
     0% {
         transform: scale(1);

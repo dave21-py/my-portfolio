@@ -21,10 +21,11 @@ document.addEventListener("DOMContentLoaded", () => {
   );
 
   // Animate Hero Image
-  animate(document.querySelector(".hero-image"),
-      { scale: [1.2, 1], opacity: [0, 0.85] },
-      { duration: 1.5, delay: 0.6, ease: [0.16, 1, 0.3, 1] }
-  );
+  // Animate Hero Image
+animate(document.querySelector(".hero-image"),
+{ scale: [1.4, 1], opacity: [0, 0.85] }, /* Changed 1.2 to 1.4 for a bigger zoom */
+{ duration: 1.5, delay: 0.6, ease: [0.16, 1, 0.3, 1] }
+);
 
   // Hover effect for buttons
   document.querySelectorAll(".cta-button, .email-button").forEach((button) => {
