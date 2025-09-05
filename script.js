@@ -49,72 +49,89 @@ document.addEventListener("DOMContentLoaded", () => {
       // Get the current vertical scroll position
       const scrollY = window.scrollY;
       
-      // Calculate the blur amount. A smaller divisor (e.g., 20) makes it blur faster.
+      // Calculate the blur amount.
       const blurAmount = scrollY / 30;
       
-      // Set a maximum blur value (e.g., 20px) so it doesn't get excessively blurry.
+      // Set a maximum blur value
       const cappedBlur = Math.min(blurAmount, 20);
 
-      // Apply the blur filter directly to the image's style
       if (heroImage) {
           heroImage.style.filter = `blur(${cappedBlur}px)`;
       }
   };
 
   // Listen for the scroll event and call the update function.
-  // Using requestAnimationFrame ensures the animation is smooth and efficient.
   window.addEventListener("scroll", () => {
       requestAnimationFrame(updateBlur);
   });
 
   // --- "SHOW MORE" PROJECTS FUNCTIONALITY ---
-const allWorksButton = document.querySelector(".all-works-link");
-const projectCards = document.querySelectorAll(".project-card");
+  const allWorksButton = document.querySelector(".all-works-link");
+  const projectCards = document.querySelectorAll(".project-card");
 
-// Make sure the button exists before adding an event listener
-if (allWorksButton) {
-    allWorksButton.addEventListener("click", (event) => {
-        // Prevent the link from trying to navigate away
-        event.preventDefault();
+  if (allWorksButton) {
+      allWorksButton.addEventListener("click", (event) => {
+          event.preventDefault();
 
-        let delay = 0;
-        // Loop through all project cards
-        projectCards.forEach((card, index) => {
-            // Target the cards that are currently hidden (index 4 is the 5th item)
-            if (index >= 4) {
-                // First, make the card part of the layout
-                card.style.display = "block";
+          let delay = 0;
+          projectCards.forEach((card, index) => {
+              if (index >= 4) {
+                  card.style.display = "block";
+                  card.classList.add("is-visible");
+                  card.style.animationDelay = `${delay}s`;
+                  delay += 0.1;
+              }
+          });
 
-                // Add the class that triggers the animation
-                card.classList.add("is-visible");
+          allWorksButton.classList.add("is-hidden");
+      });
+  }
 
-                // Apply a staggered delay to each card for a nicer effect
-                card.style.animationDelay = `${delay}s`;
-                delay += 0.1; // Increase the delay for the next card
-            }
-        });
+  // --- EXPERIENCE CARD FLIPPER ---
+  const experienceItems = document.querySelectorAll(".experience-item");
+  let currentExperienceIndex = 0;
 
-        // Add a class to fade out the "All Works" button
-        allWorksButton.classList.add("is-hidden");
-    });
-}
+  if (experienceItems.length > 0) {
+      setInterval(() => {
+          experienceItems[currentExperienceIndex].classList.remove("active");
+          currentExperienceIndex = (currentExperienceIndex + 1) % experienceItems.length;
+          experienceItems[currentExperienceIndex].classList.add("active");
+      }, 2000);
+  }
 
-// --- EXPERIENCE CARD FLIPPER ---
-const experienceItems = document.querySelectorAll(".experience-item");
-let currentExperienceIndex = 0;
+  // --- NEW: STICKY HORIZONTAL SCROLL ANIMATION ---
+  const scrollSection = document.querySelector(".horizontal-scroll-section");
+  const skillTrack = document.querySelector(".skill-track");
 
-// Check if there are items to flip
-if (experienceItems.length > 0) {
-    // Set an interval to run the flipping function every 2 seconds (2000 milliseconds)
-    setInterval(() => {
-        // Remove 'active' class from the current item
-        experienceItems[currentExperienceIndex].classList.remove("active");
+  // Only run the script if the horizontal section exists
+  if (scrollSection) {
+      const scrollAnimation = () => {
+          // Calculate how far the user has scrolled into the main section
+          const scrollAmount = window.scrollY - scrollSection.offsetTop;
+          
+          // Calculate the maximum distance we can scroll inside the section
+          const maxScroll = scrollSection.offsetHeight - window.innerHeight;
 
-        // Move to the next item, and loop back to 0 if at the end
-        currentExperienceIndex = (currentExperienceIndex + 1) % experienceItems.length;
+          // If we are outside the section's scroll area, do nothing
+          if (scrollAmount < 0 || scrollAmount > maxScroll) return;
 
-        // Add 'active' class to the new current item
-        experienceItems[currentExperienceIndex].classList.add("active");
-    }, 2000); // The duration is 2 seconds
-}
+          // Calculate the scroll progress as a percentage (0 to 1)
+          const scrollProgress = scrollAmount / maxScroll;
+          
+          // Calculate the maximum horizontal distance the track can move
+          const maxTranslate = skillTrack.scrollWidth - window.innerWidth;
+
+          // Calculate the horizontal translation based on scroll progress
+          const translateValue = scrollProgress * maxTranslate;
+
+          // Apply the transform to move the track horizontally
+          skillTrack.style.transform = `translateX(-${translateValue}px)`;
+      };
+
+      // Listen for the scroll event and use requestAnimationFrame for smooth animation
+      window.addEventListener("scroll", () => {
+          requestAnimationFrame(scrollAnimation);
+      });
+  }
+
 });
