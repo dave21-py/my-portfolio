@@ -247,30 +247,32 @@ body {
 
 .project-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Responsive grid */
+    /* This creates a responsive grid that will be 3 columns on most desktops */
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
     gap: 2rem;
 }
 
 .project-card {
-    position: relative; /* This is crucial for the text overlay */
-    border-radius: 24px; /* The large rounded corners */
-    overflow: hidden; /* This makes the video/image conform to the border-radius */
-    aspect-ratio: 4 / 3; /* Gives the card a consistent shape */
-    color: white; /* All text inside will be white */
+    position: relative;
+    border-radius: 24px;
+    overflow: hidden;
+    /* We remove the fixed aspect ratio to let the content define the height */
+    color: white;
+    /* Add a subtle shadow for depth */
+    box-shadow: 0px 8px 24px rgba(0, 0, 0, 0.08);
 }
 
-/* This styles both the video and the image to fill the card */
 .project-card video,
 .project-card img {
     width: 100%;
     height: 100%;
-    object-fit: cover; /* This makes the media fill the container without distortion */
-    transition: transform 0.4s ease; /* For a subtle zoom on hover */
+    object-fit: cover;
+    transition: transform 0.4s ease;
 }
 
 .project-card:hover video,
 .project-card:hover img {
-    transform: scale(1.05); /* Zoom effect on hover */
+    transform: scale(1.05);
 }
 
 .project-info {
@@ -279,30 +281,32 @@ body {
     left: 0;
     width: 100%;
     padding: 1.5rem;
-    box-sizing: border-box; /* Ensures padding is included in the width */
-    /* This gradient makes the text readable against any background */
-    background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent);
+    box-sizing: border-box;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.5) 50%, transparent);
 }
 
 .project-info h3 {
-    margin: 0 0 0.5rem 0;
-    font-size: 1.5rem;
-    text-shadow: 0 1px 3px rgba(0,0,0,0.3); /* Adds shadow for readability */
+    margin: 0 0 0.75rem 0;
+    font-size: 2rem; /* Much larger font size for the title */
+    font-weight: 700; /* Bolder font weight */
+    line-height: 1.2; /* Tighter line height */
+    text-shadow: 0 2px 4px rgba(0,0,0,0.5); /* Stronger shadow for readability */
 }
 
 .tags {
     display: flex;
     gap: 0.5rem;
+    flex-wrap: wrap; /* Allows tags to wrap to the next line if needed */
 }
 
 .tags span {
     display: inline-block;
-    padding: 0.25rem 0.75rem;
-    border: 1px solid rgba(255, 255, 255, 0.5);
+    padding: 0.35rem 0.85rem;
+    border: 1px solid rgba(255, 255, 255, 0.3); /* Softer border */
     border-radius: 9999px;
-    font-size: 0.8rem;
+    font-size: 0.85rem;
     font-weight: 500;
-    background-color: rgba(0, 0, 0, 0.2); /* Slight transparent background */
-    backdrop-filter: blur(5px); /* Frosted glass effect for tags */
-    -webkit-backdrop-filter: blur(5px);
+    background-color: rgba(20, 20, 20, 0.3); /* Darker, more solid background */
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
 }
