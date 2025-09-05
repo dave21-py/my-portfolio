@@ -338,14 +338,22 @@ body {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 2rem;
-    align-items: start; /* Aligns cards to the top of their grid area */
+    align-items: center; /* THIS IS THE CHANGE: Vertically centers all cards */
 }
 
 /* Card 1: Award Card */
 .award-card {
-    background-color: #f9fafb; /* Very light grey */
+    background-color: #f9fafb;
     padding: 2rem;
     border-radius: 24px;
+    /* --- UPDATED --- */
+    transition: all 0.3s ease-out;
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.1), 0px 12px 28px rgba(0, 0, 0, 0.12);
+}
+/* ADD THIS NEW RULE */
+.award-card:hover {
+    transform: scale(1.03) translateY(-5px);
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.07), 0px 20px 40px rgba(0, 0, 0, 0.08);
 }
 
 .award-header {
@@ -378,12 +386,20 @@ body {
 
 /* Card 2: Experience Card */
 .experience-card {
-    background-color: #111827; /* Near-black */
-    color: #d1d5db; /* Light grey text */
+    background-color: #111827;
+    color: #d1d5db;
     padding: 2rem;
     border-radius: 24px;
     min-height: 350px;
     position: relative;
+    /* --- UPDATED --- */
+    transition: all 0.3s ease-out;
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.1), 0px 12px 28px rgba(0, 0, 0, 0.12);
+}
+/* ADD THIS NEW RULE */
+.experience-card:hover {
+    transform: scale(1.03) translateY(-5px);
+    box-shadow: 0px 12px 24px rgba(0, 0, 0, 0.09), 0px 24px 48px rgba(0, 0, 0, 0.1);
 }
 
 .quote-icon {
@@ -441,44 +457,98 @@ body {
     color: #f9fafb;
 }
 
-/* Card 3: Stats Card */
+/* --- Card 3: Stats Card (Completely Refined for Deck Effect) --- */
+
 .stats-container {
     position: relative;
+    justify-self: center; /* Centers the container in its grid column */
+    width: 320px; /* Give the container a fixed width */
+    height: 60px; /* Give it a height to contain the animation */
 }
 
-.stat-card {
+/* Base styles for all cards in the stack */
+.stat-card,
+.trusted-card {
     background-color: #ffffff;
     padding: 1rem 1.5rem;
     border-radius: 16px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    box-shadow: 0px 12px 24px -4px rgba(0, 0, 0, 0.08), 0px 4px 8px -2px rgba(0, 0, 0, 0.05);
     display: flex;
     justify-content: space-between;
     align-items: center;
-    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); /* Smooth transition for hover */
-}
-
-/* Position the 2nd and 3rd cards behind the first one */
-.stat-card:nth-child(2),
-.stat-card:nth-child(3) {
+    box-sizing: border-box;
     position: absolute;
     width: 100%;
-    box-sizing: border-box;
     top: 0;
     left: 0;
+    transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1); /* Professional ease-out transition */
+}
+
+/* --- REST STATE (BEFORE HOVER) --- */
+
+/* The main card (10+ projects) is the 2nd child in the HTML */
+.stats-container .stat-card:nth-of-type(1) {
+    position: relative; /* Make this the only non-absolute card initially */
+    z-index: 4;
+}
+
+/* Hide all other cards behind the main one */
+.stats-container .trusted-card,
+.stats-container .stat-card:nth-of-type(2),
+.stats-container .stat-card:nth-of-type(3) {
     opacity: 0;
-    z-index: -1;
-}
-
-/* On hover, reveal the 2nd card */
-.stats-container:hover .stat-card:nth-child(2) {
-    transform: translateY(calc(100% + 1rem));
-    opacity: 1;
+    transform: scale(0.95) translateY(10px); /* Start slightly smaller and lower */
     z-index: 1;
 }
 
-/* On hover, reveal the 3rd card */
-.stats-container:hover .stat-card:nth-child(3) {
-    transform: translateY(calc(200% + 2rem));
+/* --- HOVER STATE --- */
+
+/* When hovering the container, move the main card up slightly */
+.stats-container:hover .stat-card:nth-of-type(1) {
+    transform: translateY(-5px);
+    box-shadow: 0px 16px 32px -4px rgba(0, 0, 0, 0.1), 0px 6px 12px -3px rgba(0, 0, 0, 0.08);
+}
+
+/* Reveal the green "Trusted" card and move it UP */
+.stats-container:hover .trusted-card {
     opacity: 1;
-    z-index: 1;
+    transform: translateY(calc(-100% - 1rem)); /* Move it up by its height plus a 1rem gap */
+    z-index: 5; /* Bring it to the very top */
+}
+
+/* Reveal the "5+ years" card and move it DOWN */
+.stats-container:hover .stat-card:nth-of-type(2) {
+    opacity: 1;
+    transform: translateY(calc(100% + 0.5rem)); /* Move it down by its height plus a 0.5rem gap */
+    z-index: 3;
+}
+
+/* Reveal the "10+ clients" card and move it FURTHER DOWN */
+.stats-container:hover .stat-card:nth-of-type(3) {
+    opacity: 1;
+    transform: translateY(calc(200% + 1rem)); /* Move it down by 2x height + 2x gap */
+    z-index: 2;
+}
+
+/* --- Specific Styling for the Green "Trusted" Card --- */
+.trusted-card {
+    background-color: #22c55e; /* Green background */
+    color: white;
+    font-weight: 500;
+}
+
+.avatars {
+    display: flex;
+}
+
+.avatars img {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    border: 2px solid #22c55e;
+    margin-left: -10px; /* This makes the avatars overlap */
+}
+
+.avatars img:first-child {
+    margin-left: 0;
 }
