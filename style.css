@@ -466,6 +466,7 @@ body {
     height: 60px;
     /* This makes the 3D perspective more noticeable */
     perspective: 1000px;
+    animation: gentle-float 2.5s ease-in-out infinite;
 }
 
 /* Base styles for all cards in the stack */
@@ -485,6 +486,10 @@ body {
     top: 0;
     left: 0;
     transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.stats-container:hover {
+    animation-play-state: paused;
 }
 
 /* --- REST STATE (BEFORE HOVER) --- */
@@ -559,4 +564,16 @@ body {
 
 .avatars img:first-child {
     margin-left: 0;
+}
+/* --- NEW: Call-to-action animation for the card stack --- */
+@keyframes gentle-float {
+    0% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-4px);
+    }
+    100% {
+        transform: translateY(0);
+    }
 }
