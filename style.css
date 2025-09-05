@@ -329,3 +329,156 @@ body {
     opacity: 0;
     pointer-events: none; /* Prevents clicking the invisible button */
 }
+/* --- INFO / TESTIMONIALS SECTION --- */
+.info-section {
+    padding: 6rem 5%;
+}
+
+.info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    align-items: start; /* Aligns cards to the top of their grid area */
+}
+
+/* Card 1: Award Card */
+.award-card {
+    background-color: #f9fafb; /* Very light grey */
+    padding: 2rem;
+    border-radius: 24px;
+}
+
+.award-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.award-logo {
+    font-weight: 700;
+    font-size: 2rem;
+}
+
+.award-card h3 {
+    margin: 0;
+    font-size: 1.25rem;
+}
+
+.award-card p {
+    color: #6b7280;
+    margin-bottom: 2rem;
+}
+
+.award-image img {
+    width: 100%;
+    border-radius: 12px;
+    border: 1px solid #e5e7eb;
+}
+
+/* Card 2: Experience Card */
+.experience-card {
+    background-color: #111827; /* Near-black */
+    color: #d1d5db; /* Light grey text */
+    padding: 2rem;
+    border-radius: 24px;
+    min-height: 350px;
+    position: relative;
+}
+
+.quote-icon {
+    font-size: 5rem;
+    font-weight: 700;
+    color: rgba(255, 255, 255, 0.1);
+    position: absolute;
+    top: 1rem;
+    left: 1.5rem;
+}
+
+.flipper-container {
+    position: relative;
+    height: 100%;
+}
+
+.experience-item {
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+    transform: translateY(10px);
+}
+
+.experience-item.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.experience-item p {
+    font-size: 1.25rem;
+    line-height: 1.6;
+    margin-bottom: 2rem;
+}
+
+.experience-item footer {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.experience-item footer img {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+}
+
+.author-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.author-info strong {
+    color: #f9fafb;
+}
+
+/* Card 3: Stats Card */
+.stats-container {
+    position: relative;
+}
+
+.stat-card {
+    background-color: #ffffff;
+    padding: 1rem 1.5rem;
+    border-radius: 16px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); /* Smooth transition for hover */
+}
+
+/* Position the 2nd and 3rd cards behind the first one */
+.stat-card:nth-child(2),
+.stat-card:nth-child(3) {
+    position: absolute;
+    width: 100%;
+    box-sizing: border-box;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    z-index: -1;
+}
+
+/* On hover, reveal the 2nd card */
+.stats-container:hover .stat-card:nth-child(2) {
+    transform: translateY(calc(100% + 1rem));
+    opacity: 1;
+    z-index: 1;
+}
+
+/* On hover, reveal the 3rd card */
+.stats-container:hover .stat-card:nth-child(3) {
+    transform: translateY(calc(200% + 2rem));
+    opacity: 1;
+    z-index: 1;
+}

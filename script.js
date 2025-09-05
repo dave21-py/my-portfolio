@@ -98,4 +98,23 @@ if (allWorksButton) {
         allWorksButton.classList.add("is-hidden");
     });
 }
+
+// --- EXPERIENCE CARD FLIPPER ---
+const experienceItems = document.querySelectorAll(".experience-item");
+let currentExperienceIndex = 0;
+
+// Check if there are items to flip
+if (experienceItems.length > 0) {
+    // Set an interval to run the flipping function every 2 seconds (2000 milliseconds)
+    setInterval(() => {
+        // Remove 'active' class from the current item
+        experienceItems[currentExperienceIndex].classList.remove("active");
+
+        // Move to the next item, and loop back to 0 if at the end
+        currentExperienceIndex = (currentExperienceIndex + 1) % experienceItems.length;
+
+        // Add 'active' class to the new current item
+        experienceItems[currentExperienceIndex].classList.add("active");
+    }, 2000); // The duration is 2 seconds
+}
 });
