@@ -1,0 +1,179 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap");
+
+:root {
+    --background-color: #ffffff;
+    --text-color: #1a1a1a;
+    --primary-button-bg: #1a1a1a;
+    --primary-button-text: #ffffff;
+    --status-color: #34d399;
+}
+
+body {
+    font-family: "Inter", sans-serif;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    margin: 0;
+    padding: 0 5%;
+    overflow-x: hidden;
+}
+
+.main-header {
+    padding: 2rem 0;
+}
+
+.main-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-weight: 700;
+    font-size: 1.5rem;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 2rem;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #6b7280; /* Changed to a lighter grey for the navigation links */
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+    color: #888;
+}
+
+.cta-button {
+    background-color: var(--primary-button-bg);
+    color: var(--primary-button-text);
+    padding: 0.75rem 1.5rem;
+    border-radius: 9999px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: background-color 0.3s ease;
+}
+
+.cta-button:hover {
+    background-color: #333;
+}
+
+/* --- REVISED HERO SECTION STYLES --- */
+.hero-section {
+    position: relative;
+    height: 85vh; /* Make the section fill most of the viewport */
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr;
+    align-items: center;
+    gap: 2rem;
+}
+
+.hero-image-container {
+    position: absolute;
+    top: -5%; /* Move image up slightly */
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: -1; /* Place image behind text */
+}
+
+.hero-image {
+    width: auto;
+    height: 100%;
+    max-width: 600px; /* Enlarge the image */
+    object-fit: contain;
+    opacity: 0.85; /* Slight transparency */
+    /* This creates the blurred/faded bottom effect */
+    mask-image: linear-gradient(to top, transparent 5%, black 40%);
+    -webkit-mask-image: linear-gradient(to top, transparent 5%, black 40%);
+}
+
+.hero-content {
+    grid-column: 1 / 2;
+    align-self: end; /* Position this at the bottom of its grid area */
+    padding-bottom: 2rem;
+}
+
+.availability {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem; /* Increased gap slightly */
+    margin-bottom: 1.5rem; /* Increased margin */
+}
+
+/* ADD THIS NEW RULE */
+.availability p {
+    color: #6b7280; /* A grey color for the text */
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.status-indicator {
+    width: 0.6rem; /* Slightly smaller */
+    height: 0.6rem;
+    background-color: var(--status-color);
+    border-radius: 50%;
+    /* This line applies the animation we just created */
+    animation: glow 2.5s infinite ease-in-out;
+}
+
+.hero-title {
+    font-size: 2.3rem;
+    line-height: 1.1;
+    font-weight: 700; /* Reverted to bolder weight to match reference */
+    color: #1a1a1a;
+    letter-spacing: -0.02em;
+}
+
+.hero-description {
+    grid-column: 2 / 3;
+    /* This content remains vertically centered in its column */
+}
+
+.hero-description p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-bottom: 2rem;
+    max-width: 450px;
+}
+
+.email-button {
+    background-color: var(--primary-button-bg);
+    color: var(--primary-button-text);
+    padding: 1rem 2rem;
+    border-radius: 9999px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: background-color 0.3s ease;
+    display: inline-block;
+}
+
+.email-button:hover {
+    background-color: #333;
+}
+/* --- ADD THIS AT THE END OF YOUR CSS FILE --- */
+@keyframes glow {
+    0% {
+        transform: scale(1);
+        box-shadow: 0 0 3px #34d399;
+    }
+    50% {
+        transform: scale(1.1);
+        box-shadow:
+            0 0 10px #34d399,
+            0 0 15px #34d399;
+    }
+    100% {
+        transform: scale(1);
+        box-shadow: 0 0 3px #34d399;
+    }
+}
