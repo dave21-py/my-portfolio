@@ -67,11 +67,16 @@ body {
     border-radius: 9999px;
     text-decoration: none;
     font-weight: 500;
-    transition: background-color 0.3s ease;
+    /* --- This is the new, softer shadow --- */
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.1), 0px 12px 28px rgba(0, 0, 0, 0.12);
+    transition: all 0.3s ease-in-out;
 }
 
 .cta-button:hover {
-    background-color: #333;
+    background-color: blue;
+    transform: translateY(-3px);
+    /* --- This is the new, enhanced hover shadow --- */
+    box-shadow: 0px 7px 14px rgba(0, 0, 0, 0.12), 0px 16px 32px rgba(0, 0, 0, 0.14);
 }
 
 /* --- REVISED HERO SECTION STYLES --- */
@@ -157,7 +162,7 @@ body {
 
 /* This rule styles the paragraph text correctly. */
 .hero-description p {
-    font-size: 1.1rem;
+    font-size: 1.2rem;
     line-height: 1.6;
     margin-bottom: 2rem;
     max-width: 450px;
@@ -171,12 +176,17 @@ body {
     border-radius: 9999px;
     text-decoration: none;
     font-weight: 500;
-    transition: background-color 0.3s ease;
     display: inline-block;
+    /* --- This is the new, softer shadow --- */
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.1), 0px 12px 28px rgba(0, 0, 0, 0.12);
+    transition: all 0.3s ease-in-out;
 }
 
 .email-button:hover {
-    background-color: #333;
+    background-color: blue;
+    transform: translateY(-3px);
+    /* --- This is the new, enhanced hover shadow --- */
+    box-shadow: 0px 7px 14px rgba(0, 0, 0, 0.12), 0px 16px 32px rgba(0, 0, 0, 0.14);
 }
 
 /* --- ANIMATION KEYFRAMES --- */
