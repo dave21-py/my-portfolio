@@ -1,6 +1,5 @@
 @import url('https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700&display=swap');
 
-
 :root {
     --background-color: #ffffff;
     --text-color: #1a1a1a;
@@ -10,8 +9,7 @@
 }
 
 body {
-    /* --- CHANGE THIS LINE --- */
-    font-family: "Satoshi", sans-serif; 
+    font-family: "Satoshi", sans-serif;
     background-color: var(--background-color);
     color: var(--text-color);
     margin: 0;
@@ -76,28 +74,30 @@ body {
     box-shadow: 0px 7px 14px rgba(0, 0, 0, 0.12), 0px 16px 32px rgba(0, 0, 0, 0.14);
 }
 
-/* === START: REPLACEMENT HERO SECTION STYLES === */
+/* === START: UPDATED HERO VIEWPORT STYLES === */
+
+.hero-view-container {
+    height: 100vh; /* Make the container exactly the viewport height */
+    display: flex;
+    flex-direction: column;
+}
 
 .hero-section {
     position: relative;
-    /* --- CHANGE THIS --- */
-    height: 95vh; /* Was 90vh. This gives more vertical space for the image. */
+    flex-grow: 1; /* Tells the hero to take up ALL remaining space */
     display: grid;
     grid-template-columns: 1fr 1fr;
     align-items: end;
     gap: 2rem;
-    padding-bottom: 4rem; 
 }
 
-/* Find this rule in your style.css */
 .hero-image-container {
     position: absolute;
     bottom: 0;
     left: 50%;
     transform: translateX(-50%);
     width: 100%;
-    /* --- THIS IS THE KEY CHANGE --- */
-    max-width: 850px; /* Was 720px. A significant increase for more presence. */
+    max-width: 850px; /* Increased for more presence */
     height: 95%;
     display: flex;
     justify-content: center;
@@ -108,18 +108,16 @@ body {
 .hero-image {
     width: 100%;
     height: 100%;
-    object-fit: contain; /* Use contain to ensure the whole person is visible */
-    object-position: bottom; /* Anchor the image to the bottom */
-    opacity: 1; /* Make it fully opaque */
-
-    /* The most important change for the image fade effect */
+    object-fit: contain;
+    object-position: bottom;
+    opacity: 1;
     mask-image: linear-gradient(to top, transparent 0%, black 25%);
     -webkit-mask-image: linear-gradient(to top, transparent 0%, black 25%);
 }
 
 .hero-content {
-    grid-column: 1 / 2; /* Position this in the first column */
-    /* Remove padding, alignment is handled by the grid */
+    grid-column: 1 / 2;
+    margin-bottom: 3rem; /* Lifts the content from the bottom edge */
 }
 
 .availability {
@@ -144,25 +142,22 @@ body {
 }
 
 .hero-title {
-    /* Refined typography to match Carter's style */
-    font-size: 2.8rem; /* Slightly larger for impact */
+    font-size: 2.8rem;
     line-height: 1.15;
     font-weight: 700;
     color: #1a1a1a;
-    letter-spacing: -0.03em; /* Tighter letter spacing */
+    letter-spacing: -0.03em;
 }
 
-/* Find this rule in your style.css */
 .hero-description {
     grid-column: 2 / 3;
     justify-self: end;
     max-width: 400px;
-    /* --- ADD THIS LINE --- */
-    margin-bottom: 2rem; /* Pushes the block up from the bottom */
+    margin-bottom: 3rem; /* Lifts the content from the bottom edge */
 }
 
 .hero-description p {
-    color: #374151; /* A slightly darker grey for better readability */
+    color: #374151;
     line-height: 1.6;
     margin-bottom: 2rem;
 }
@@ -170,7 +165,7 @@ body {
 .email-button {
     background-color: var(--primary-button-bg);
     color: var(--primary-button-text);
-    padding: 0.85rem 1.75rem; /* Tweak padding for the right feel */
+    padding: 0.85rem 1.75rem;
     border-radius: 9999px;
     text-decoration: none;
     font-weight: 500;
@@ -180,12 +175,12 @@ body {
 }
 
 .email-button:hover {
-    background-color: #374151; /* A more subtle hover color */
+    background-color: #374151;
     transform: translateY(-3px);
     box-shadow: 0px 7px 14px rgba(0, 0, 0, 0.12), 0px 16px 32px rgba(0, 0, 0, 0.14);
 }
 
-/* === END: REPLACEMENT HERO SECTION STYLES === */
+/* === END: UPDATED HERO VIEWPORT STYLES === */
 
 @keyframes glow {
     0% {
@@ -454,7 +449,7 @@ body {
     width: 320px;
     height: 60px;
     perspective: 1000px;
-    animation: gentle-float 1.8s ease-in-out infinite; /* UPDATED: Faster duration */
+    animation: gentle-float 1.8s ease-in-out infinite;
 }
 
 .stat-card,
@@ -495,7 +490,6 @@ body {
     z-index: 1;
 }
 
-/* --- NEW: Stop the float animation on hover --- */
 .stats-container:hover {
     animation-play-state: paused;
 }
@@ -547,7 +541,7 @@ body {
         transform: translateY(0);
     }
     50% {
-        transform: translateY(-6px); /* UPDATED: Increased movement */
+        transform: translateY(-6px);
     }
     100% {
         transform: translateY(0);
@@ -568,14 +562,14 @@ body {
     overflow: hidden;
     display: flex;
     flex-direction: column;
-    justify-content: flex-start; /* Aligns content to the top */
-    padding-top: 6rem;         /* Adds controlled space above the title */
+    justify-content: flex-start;
+    padding-top: 6rem;
 }
 
 .section-title {
-    font-size: 2.5rem; /* Matches the "Projects" heading size */
+    font-size: 2.5rem;
     font-weight: 700;
-    text-align: left;   /* Aligns the heading to the left */
+    text-align: left;
     margin-bottom: 3rem;
     padding: 0 5%;
 }
@@ -595,11 +589,9 @@ body {
     flex-shrink: 0;
     width: 380px;
     transition: transform 0.4s ease, box-shadow 0.4s ease;
-    /* ADD THIS LINE to apply the animation */
     animation: card-float 2.5s ease-in-out infinite;
 }
 
-/* --- NEW: Staggered Delay for Wave Effect --- */
 .skill-card-h:nth-child(1) {
     animation-delay: 0s;
 }
@@ -616,7 +608,6 @@ body {
 .skill-card-h:hover {
     transform: translateY(-10px) scale(1.02);
     box-shadow: 0px 12px 24px rgba(0, 0, 0, 0.08), 0px 24px 48px rgba(0, 0, 0, 0.1);
-    /* ADD THIS LINE to pause the float on hover */
     animation-play-state: paused;
 }
 
@@ -651,12 +642,10 @@ body {
 }
  /* --- NEW: CUSTOM CURSOR STYLES --- */
 
-/* 1. Hide the default system cursor */
 body, a, button, .project-card, .award-card, .experience-card, .stats-container {
     cursor: none;
 }
 
-/* 2. Style the custom cursor element */
 .custom-cursor {
     position: fixed;
     top: 0;
@@ -664,29 +653,19 @@ body, a, button, .project-card, .award-card, .experience-card, .stats-container 
     width: 38px;
     height: 38px;
     border-radius: 50%;
-    
-    /* --- UPDATED PROPERTIES FOR TRANSLUCENT EFFECT --- */
-    
-    /* Use a semi-transparent grey for the translucent color */
     background-color: rgba(180, 180, 180, 0.5); 
-    
-    /* This is the key for the blurry "glass" effect on content behind it */
     backdrop-filter: blur(5px);
-    -webkit-backdrop-filter: blur(5px); /* For Safari browser compatibility */
-
-    /* Smooths out the movement and size changes */
+    -webkit-backdrop-filter: blur(5px);
     transition: transform 0.2s cubic-bezier(0.22, 1, 0.36, 1), width 0.3s ease, height 0.3s ease;
-    
     pointer-events: none; 
     z-index: 9999;
 }
 
-/* 3. Define the "shrink" state for when we hover over links/buttons */
 .custom-cursor.shrink {
     width: 16px;
     height: 16px;
 }
-/* --- NEW: Keyframe for Skill Card Floating --- */
+
 @keyframes card-float {
     0% {
         transform: translateY(0);
