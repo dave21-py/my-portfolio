@@ -1,4 +1,5 @@
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap");
+@import url('https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700&display=swap');
+
 
 :root {
     --background-color: #ffffff;
@@ -9,7 +10,8 @@
 }
 
 body {
-    font-family: "Inter", sans-serif;
+    /* --- CHANGE THIS LINE --- */
+    font-family: "Satoshi", sans-serif; 
     background-color: var(--background-color);
     color: var(--text-color);
     margin: 0;
@@ -74,21 +76,29 @@ body {
     box-shadow: 0px 7px 14px rgba(0, 0, 0, 0.12), 0px 16px 32px rgba(0, 0, 0, 0.14);
 }
 
+/* === START: REPLACEMENT HERO SECTION STYLES === */
+
 .hero-section {
     position: relative;
-    height: 85vh;
+    /* --- CHANGE THIS --- */
+    height: 95vh; /* Was 90vh. This gives more vertical space for the image. */
     display: grid;
     grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1fr auto;
-    align-items: center;
+    align-items: end;
     gap: 2rem;
+    padding-bottom: 4rem; 
 }
 
+/* Find this rule in your style.css */
 .hero-image-container {
     position: absolute;
-    left: 0;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
     width: 100%;
-    height: 100%;
+    /* --- THIS IS THE KEY CHANGE --- */
+    max-width: 850px; /* Was 720px. A significant increase for more presence. */
+    height: 95%;
     display: flex;
     justify-content: center;
     align-items: flex-end;
@@ -96,20 +106,20 @@ body {
 }
 
 .hero-image {
-    width: auto;
+    width: 100%;
     height: 100%;
-    max-width: 750px;
-    object-fit: contain;
-    opacity: 0.85;
-    mask-image: linear-gradient(to top, transparent 0%, black 15%);
-    -webkit-mask-image: linear-gradient(to top, transparent 0%, black 15%);
+    object-fit: contain; /* Use contain to ensure the whole person is visible */
+    object-position: bottom; /* Anchor the image to the bottom */
+    opacity: 1; /* Make it fully opaque */
+
+    /* The most important change for the image fade effect */
+    mask-image: linear-gradient(to top, transparent 0%, black 25%);
+    -webkit-mask-image: linear-gradient(to top, transparent 0%, black 25%);
 }
 
 .hero-content {
-    grid-column: 1 / 2;
-    grid-row: 2 / 3;
-    align-self: end;
-    padding-bottom: 2rem;
+    grid-column: 1 / 2; /* Position this in the first column */
+    /* Remove padding, alignment is handled by the grid */
 }
 
 .availability {
@@ -134,28 +144,33 @@ body {
 }
 
 .hero-title {
-    font-size: 2.3rem;
-    line-height: 1.1;
+    /* Refined typography to match Carter's style */
+    font-size: 2.8rem; /* Slightly larger for impact */
+    line-height: 1.15;
     font-weight: 700;
     color: #1a1a1a;
-    letter-spacing: -0.02em;
+    letter-spacing: -0.03em; /* Tighter letter spacing */
 }
 
+/* Find this rule in your style.css */
 .hero-description {
     grid-column: 2 / 3;
-    grid-row: 2 / 3;
-    align-self: end;
     justify-self: end;
-    padding-bottom: 2rem;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
+    max-width: 400px;
+    /* --- ADD THIS LINE --- */
+    margin-bottom: 2rem; /* Pushes the block up from the bottom */
+}
+
+.hero-description p {
+    color: #374151; /* A slightly darker grey for better readability */
+    line-height: 1.6;
+    margin-bottom: 2rem;
 }
 
 .email-button {
     background-color: var(--primary-button-bg);
     color: var(--primary-button-text);
-    padding: 1rem 2rem;
+    padding: 0.85rem 1.75rem; /* Tweak padding for the right feel */
     border-radius: 9999px;
     text-decoration: none;
     font-weight: 500;
@@ -165,10 +180,12 @@ body {
 }
 
 .email-button:hover {
-    background-color: blue;
+    background-color: #374151; /* A more subtle hover color */
     transform: translateY(-3px);
     box-shadow: 0px 7px 14px rgba(0, 0, 0, 0.12), 0px 16px 32px rgba(0, 0, 0, 0.14);
 }
+
+/* === END: REPLACEMENT HERO SECTION STYLES === */
 
 @keyframes glow {
     0% {
