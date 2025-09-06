@@ -74,6 +74,12 @@ body {
     box-shadow: 0px 7px 14px rgba(0, 0, 0, 0.12), 0px 16px 32px rgba(0, 0, 0, 0.14);
 }
 
+/* Initially hide the hamburger menu on desktop */
+.hamburger-menu {
+    display: none;
+}
+
+
 /* === START: UPDATED HERO VIEWPORT STYLES === */
 
 .hero-view-container {
@@ -675,5 +681,203 @@ body, a, button, .project-card, .award-card, .experience-card, .stats-container 
     }
     100% {
         transform: translateY(0);
+    }
+}
+
+
+/* ======================================================= */
+/* START: RESPONSIVE MEDIA QUERIES */
+/* ======================================================= */
+
+/* --- TABLET AND SMALLER DESKTOP (<= 1024px) --- */
+@media (max-width: 1024px) {
+    .hero-title {
+        font-size: 2.2rem; /* Reduce hero title font size */
+    }
+
+    .project-grid {
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Adjust project grid */
+    }
+
+    .info-grid {
+        grid-template-columns: 1fr 1fr; /* Make info grid 2 columns */
+    }
+
+    .stats-container {
+        grid-column: 1 / -1; /* Make stats container full width */
+        margin-top: 2rem;
+    }
+}
+
+/* --- TABLET & LARGE PHONES (<= 768px) --- */
+@media (max-width: 768px) {
+
+    /* --- NAVIGATION --- */
+    .nav-links {
+        /* Mobile menu starts hidden */
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        background-color: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 2.5rem;
+        transform: translateY(-100%);
+        transition: transform 0.5s ease-in-out;
+        z-index: 100;
+    }
+
+    .nav-links.active {
+        transform: translateY(0); /* Slides the menu in */
+    }
+
+    .nav-links a {
+        font-size: 1.5rem;
+        color: var(--text-color);
+    }
+
+    .cta-button {
+        display: none; /* Hide resume button in nav, can be moved into mobile menu */
+    }
+
+    .hamburger-menu {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        cursor: pointer;
+        background: none;
+        border: none;
+        z-index: 101; /* Ensure it's above other content */
+    }
+
+    .hamburger-menu .bar {
+        width: 25px;
+        height: 3px;
+        background-color: var(--text-color);
+        transition: all 0.3s ease;
+    }
+
+    /* Animate hamburger to an 'X' */
+    .hamburger-menu.active .bar:nth-child(1) {
+        transform: rotate(45deg) translate(5px, 6px);
+    }
+    .hamburger-menu.active .bar:nth-child(2) {
+        opacity: 0;
+    }
+    .hamburger-menu.active .bar:nth-child(3) {
+        transform: rotate(-45deg) translate(5px, -6px);
+    }
+
+    /* --- HERO SECTION --- */
+    .hero-view-container {
+        height: auto; /* Let hero content determine its height */
+        padding-bottom: 4rem;
+    }
+
+    .hero-section {
+        grid-template-columns: 1fr; /* Stack hero content vertically */
+        align-items: center;
+        gap: 1rem;
+        text-align: center;
+    }
+    
+    .hero-image-container {
+        position: relative;
+        order: 1; /* Image comes first */
+        transform: none;
+        left: 0;
+        height: 50vh;
+        max-width: 100%;
+        margin-top: 2rem;
+    }
+    
+    .hero-image {
+        mask-image: none; /* Remove the mask for better visibility on mobile */
+        -webkit-mask-image: none;
+    }
+
+    .hero-content {
+        order: 2; /* Title and availability come second */
+        margin-bottom: 1rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .hero-title {
+        font-size: 1.8rem;
+    }
+
+    .hero-description {
+        order: 3; /* Description comes last */
+        justify-self: center;
+        margin-bottom: 0;
+        max-width: 100%;
+    }
+
+    /* --- INFO SECTION --- */
+    .info-grid {
+        grid-template-columns: 1fr; /* Stack cards vertically */
+    }
+    
+    /* --- SKILLS SECTION (NO HORIZONTAL SCROLL) --- */
+    .horizontal-scroll-section {
+        height: auto; /* Let content determine height */
+        padding: 4rem 0;
+    }
+    
+    .pinner {
+        position: static; /* Remove sticky behavior */
+        height: auto;
+        padding-top: 0;
+    }
+
+    .skill-track {
+        flex-direction: column; /* Stack skill cards vertically */
+    }
+
+    .skill-card-h {
+        width: auto; /* Let cards take full width */
+    }
+
+    /* --- CUSTOM CURSOR --- */
+    .custom-cursor {
+        display: none; /* Hide custom cursor on touch devices */
+    }
+}
+
+/* --- SMALL PHONES (<= 480px) --- */
+@media (max-width: 480px) {
+    body {
+        padding: 0 3%; /* Reduce side padding */
+    }
+
+    .hero-title {
+        font-size: 1.6rem;
+    }
+
+    .works-header {
+        flex-direction: column; /* Stack "Projects" and "All Works" */
+        gap: 1rem;
+        align-items: flex-start;
+    }
+    
+    .project-grid {
+        grid-template-columns: 1fr; /* Ensure single column for projects */
+        gap: 1.5rem;
+    }
+
+    .project-info h3 {
+        font-size: 1.5rem;
+    }
+
+    .featured-works, .info-section {
+        padding-left: 3%;
+        padding-right: 3%;
     }
 }
