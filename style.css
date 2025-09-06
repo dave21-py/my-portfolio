@@ -578,11 +578,29 @@ body {
     flex-shrink: 0;
     width: 380px;
     transition: transform 0.4s ease, box-shadow 0.4s ease;
+    /* ADD THIS LINE to apply the animation */
+    animation: card-float 2.5s ease-in-out infinite;
+}
+
+/* --- NEW: Staggered Delay for Wave Effect --- */
+.skill-card-h:nth-child(1) {
+    animation-delay: 0s;
+}
+.skill-card-h:nth-child(2) {
+    animation-delay: 0.2s;
+}
+.skill-card-h:nth-child(3) {
+    animation-delay: 0.4s;
+}
+.skill-card-h:nth-child(4) {
+    animation-delay: 0.6s;
 }
 
 .skill-card-h:hover {
     transform: translateY(-10px) scale(1.02);
     box-shadow: 0px 12px 24px rgba(0, 0, 0, 0.08), 0px 24px 48px rgba(0, 0, 0, 0.1);
+    /* ADD THIS LINE to pause the float on hover */
+    animation-play-state: paused;
 }
 
 .skill-card-h .skill-card-header {
@@ -650,4 +668,16 @@ body, a, button, .project-card, .award-card, .experience-card, .stats-container 
 .custom-cursor.shrink {
     width: 16px;
     height: 16px;
+}
+/* --- NEW: Keyframe for Skill Card Floating --- */
+@keyframes card-float {
+    0% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-6px);
+    }
+    100% {
+        transform: translateY(0);
+    }
 }
