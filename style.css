@@ -437,7 +437,7 @@ body {
     width: 320px;
     height: 60px;
     perspective: 1000px;
-    animation: gentle-float 2.5s ease-in-out infinite;
+    animation: gentle-float 1.8s ease-in-out infinite; /* UPDATED: Faster duration */
 }
 
 .stat-card,
@@ -491,7 +491,7 @@ body {
 
 .stats-container:hover .trusted-card {
     opacity: 1;
-    transform: translateY(calc(-100% - 1.75rem));
+    transform: translateY(calc(-100% - 4.2rem));
     z-index: 5;
 }
 
@@ -530,7 +530,7 @@ body {
         transform: translateY(0);
     }
     50% {
-        transform: translateY(-4px);
+        transform: translateY(-6px); /* UPDATED: Increased movement */
     }
     100% {
         transform: translateY(0);
@@ -551,13 +551,14 @@ body {
     overflow: hidden;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start; /* Aligns content to the top */
+    padding-top: 6rem;         /* Adds controlled space above the title */
 }
 
 .section-title {
-    font-size: 3rem;
+    font-size: 2.5rem; /* Matches the "Projects" heading size */
     font-weight: 700;
-    text-align: center;
+    text-align: left;   /* Aligns the heading to the left */
     margin-bottom: 3rem;
     padding: 0 5%;
 }
@@ -612,4 +613,41 @@ body {
     padding: 0.5rem 1rem;
     border-radius: 9999px;
     font-weight: 500;
+}
+ /* --- NEW: CUSTOM CURSOR STYLES --- */
+
+/* 1. Hide the default system cursor */
+body, a, button, .project-card, .award-card, .experience-card, .stats-container {
+    cursor: none;
+}
+
+/* 2. Style the custom cursor element */
+.custom-cursor {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    
+    /* --- UPDATED PROPERTIES FOR TRANSLUCENT EFFECT --- */
+    
+    /* Use a semi-transparent grey for the translucent color */
+    background-color: rgba(180, 180, 180, 0.5); 
+    
+    /* This is the key for the blurry "glass" effect on content behind it */
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px); /* For Safari browser compatibility */
+
+    /* Smooths out the movement and size changes */
+    transition: transform 0.2s cubic-bezier(0.22, 1, 0.36, 1), width 0.3s ease, height 0.3s ease;
+    
+    pointer-events: none; 
+    z-index: 9999;
+}
+
+/* 3. Define the "shrink" state for when we hover over links/buttons */
+.custom-cursor.shrink {
+    width: 16px;
+    height: 16px;
 }

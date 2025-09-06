@@ -134,4 +134,36 @@ document.addEventListener("DOMContentLoaded", () => {
       });
   }
 
+  // --- CUSTOM CURSOR LOGIC ---
+const cursor = document.querySelector('.custom-cursor');
+
+// 1. Function to move the cursor
+const moveCursor = (e) => {
+    // We use clientX and clientY to get the mouse position
+    const x = e.clientX;
+    const y = e.clientY;
+    
+    // Position the cursor div. We offset by half its width/height to center it.
+    cursor.style.transform = `translate3d(${x - 16}px, ${y - 16}px, 0)`;
+};
+
+// Add the event listener for mouse movement
+window.addEventListener('mousemove', moveCursor);
+
+// 2. Logic to shrink the cursor on hover
+// Select all elements that should trigger the shrink effect
+const interactiveElements = document.querySelectorAll(
+    'a, button, .project-card, .award-card, .experience-card, .stats-container'
+);
+
+// Add event listeners to each interactive element
+interactiveElements.forEach(el => {
+    el.addEventListener('mouseenter', () => {
+        cursor.classList.add('shrink');
+    });
+    el.addEventListener('mouseleave', () => {
+        cursor.classList.remove('shrink');
+    });
+});
+
 });
